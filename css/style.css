@@ -1,0 +1,461 @@
+/* ========== Reset ========== */
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td {margin:0;padding:0;}
+table {border-collapse:collapse;border-spacing:0;}
+fieldset,img {border:0}
+address,caption,cite,code,dfn,em,strong,th,var {font-style:normal;font-weight:normal}
+ol,ul {list-style:none}
+caption,th {text-align:left}
+h1,h2,h3,h4,h5,h6 {font-size:100%;font-weight:normal}
+q:before,q:after {content:''}
+abbr,acronym {border:0}
+
+/* ========== 全局 ========== */
+body {
+  background: #f5f5f0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #333;
+}
+
+#newsapp {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 20px 12px 40px;
+}
+
+.newscontainer {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+  overflow: hidden;
+  margin-top: 8px;
+}
+
+/* ========== 字体切换按钮（截图区外） ========== */
+.font-controls {
+  display: flex;
+  justify-content: flex-end;
+  padding-bottom: 10px;
+}
+
+.tool-group {
+  display: inline-flex;
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+}
+
+.tool-group button {
+  padding: 7px 14px;
+  font-size: 13px;
+  background: transparent;
+  color: #888;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+  outline: none;
+  min-width: 36px;
+}
+
+.tool-group button:hover {
+  color: #333;
+  background: #f5f5f5;
+}
+
+.tool-group button.active {
+  background: #1a1a2e;
+  color: #fff;
+  font-weight: 600;
+}
+
+/* ========== 头部 ========== */
+.header {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  padding: 44px 24px 48px;
+  text-align: center;
+  color: #fff;
+  position: relative;
+}
+
+.header::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 36px;
+  background: #fff;
+  border-radius: 50% 50% 0 0;
+}
+
+.maintitle {
+  font-size: 42px;
+  font-weight: 700;
+  letter-spacing: 6px;
+  margin-bottom: 18px;
+}
+
+.tagline {
+  font-size: 13px;
+  color: rgba(255,255,255,0.48);
+  letter-spacing: 2px;
+}
+
+/* ========== 日期栏 ========== */
+.datebar {
+  padding: 16px 24px 0;
+}
+
+.datebar-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.date-left {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.date-gregorian {
+  font-size: 22px;
+  font-weight: 700;
+  color: #1a1a2e;
+}
+
+.weekday-cn-inline {
+  font-size: 15px;
+  color: #888;
+}
+
+.date-year {
+  font-size: 13px;
+  color: #aaa;
+}
+
+.date-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 1px;
+}
+
+.date-lunar-label {
+  font-size: 11px;
+  color: #bbb;
+}
+
+.date-lunar {
+  font-size: 14px;
+  color: #666;
+}
+
+/* ========== 新闻列表 ========== */
+.newslist {
+  padding: 6px 24px 0;
+}
+
+.newstxt {
+  font-size: 14px;
+  line-height: 1.7;
+  color: #3a3a3a;
+  padding: 8px 0;
+  border-bottom: 1px solid #f8f8f5;
+}
+
+.newstxt:last-child {
+  border-bottom: none;
+}
+
+/* ========== 微语 ========== */
+.weiyu {
+  margin: 10px 24px 12px;
+  padding: 14px 16px;
+  background: #fafaf8;
+  border-radius: 8px;
+  border-left: 2px solid #0f3460;
+}
+
+.weiyu-text {
+  font-size: 13px;
+  line-height: 1.7;
+  color: #666;
+}
+
+/* ========== 底部 ========== */
+.footer {
+  text-align: center;
+  padding: 16px 24px 18px;
+}
+
+.footer-link {
+  font-size: 13px;
+  font-weight: 500;
+  color: #0f3460;
+  letter-spacing: 1px;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer-link:hover {
+  color: #1a1a2e;
+}
+
+.disclaimer {
+  margin-top: 10px;
+  font-size: 11px;
+  color: #bbb;
+  line-height: 1.5;
+}
+
+/* ========== 字体大小 ========== */
+/* 小 */
+.fs-small .newstxt { font-size: 12px; line-height: 1.6; padding: 6px 0; }
+.fs-small .weiyu { margin: 8px 24px 10px; padding: 10px 14px; }
+.fs-small .weiyu-text { font-size: 12px; line-height: 1.6; }
+
+/* 中 */
+.fs-medium .newstxt { font-size: 14px; line-height: 1.7; padding: 8px 0; }
+.fs-medium .weiyu { margin: 10px 24px 12px; padding: 14px 16px; }
+.fs-medium .weiyu-text { font-size: 13px; line-height: 1.7; }
+
+/* 大 */
+.fs-large .newstxt { font-size: 17px; line-height: 1.9; padding: 10px 0; }
+.fs-large .weiyu { margin: 14px 24px 16px; padding: 16px 18px; }
+.fs-large .weiyu-text { font-size: 15px; line-height: 1.9; }
+
+/* ========== 保存按钮 ========== */
+.imagebtn {
+  margin: 24px 0 0;
+  text-align: center;
+}
+
+.imagebtn button {
+  padding: 14px 48px;
+  font-size: 15px;
+  font-weight: 500;
+  background: #1a1a2e;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  letter-spacing: 1px;
+  transition: all 0.25s ease;
+  box-shadow: 0 2px 8px rgba(26,26,46,0.2);
+}
+
+.imagebtn button:hover {
+  background: #0f3460;
+  box-shadow: 0 4px 16px rgba(15,52,96,0.3);
+  transform: translateY(-1px);
+}
+
+.imagebtn button:active {
+  transform: translateY(0);
+}
+
+/* ========== 弹窗 ========== */
+.modal-overlay {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.6);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content {
+  background: #fff;
+  width: 90%;
+  max-width: 480px;
+  border-radius: 16px;
+  overflow: hidden;
+  max-height: 90%;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-header {
+  padding: 14px 20px;
+  background: #fff;
+  text-align: center;
+  position: relative;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.modal-header h2 {
+  font-size: 16px;
+  font-weight: 500;
+  color: #333;
+}
+
+.modal-close {
+  font-size: 28px;
+  position: absolute;
+  top: 6px;
+  right: 16px;
+  color: #bbb;
+  cursor: pointer;
+  transition: color 0.2s;
+  line-height: 1;
+}
+
+.modal-close:hover {
+  color: #333;
+}
+
+.modal-body {
+  background: #eee;
+  padding: 12px;
+  overflow: auto;
+  flex: 1;
+}
+
+/* ========== 加载状态 ========== */
+.loading {
+  text-align: center;
+  padding: 100px 0;
+}
+
+.loading-spinner {
+  width: 36px;
+  height: 36px;
+  margin: 0 auto 16px;
+  border: 3px solid #f0f0f0;
+  border-top-color: #1a1a2e;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.loading p {
+  font-size: 14px;
+  color: #999;
+}
+
+/* ========== 响应式 ========== */
+@media (max-width: 480px) {
+  #newsapp {
+    padding: 12px 8px 30px;
+  }
+
+  .font-controls {
+    padding-bottom: 8px;
+  }
+
+  .maintitle {
+    font-size: 34px;
+    letter-spacing: 4px;
+  }
+
+  .header {
+    padding: 32px 16px 38px;
+  }
+
+  .newslist {
+    padding: 6px 16px 0;
+  }
+
+  .datebar {
+    padding: 12px 16px 0;
+  }
+
+  .weiyu {
+    margin-left: 16px;
+    margin-right: 16px;
+  }
+
+  .footer {
+    padding: 12px 16px 14px;
+  }
+
+  .disclaimer {
+    font-size: 10px;
+  }
+}
+
+/* ========== 备案信息 ========== */
+.beian-bar {
+  width: 100%;
+  background: transparent;
+  padding: 8px 0;
+  text-align: center;
+  font-size: 12px;
+  line-height: 1.6;
+  border-top: 1px solid transparent;
+}
+
+.beian-pc {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+}
+
+.beian-disclaimer {
+  color: #e74c3c;
+  white-space: nowrap;
+}
+
+.beian-icp {
+  color: #999;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.beian-icp:hover {
+  color: #666;
+}
+
+.beian-gongan {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: #999;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.beian-gongan:hover {
+  color: #666;
+}
+
+.beian-gongan img {
+  width: 14px;
+  height: 14px;
+}
+
+@media (max-width: 768px) {
+  .beian-pc { display: none; }
+  .beian-mobile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+  .beian-mobile a,
+  .beian-mobile span {
+    display: block;
+    line-height: 1.8;
+  }
+}
+
+@media (min-width: 769px) {
+  .beian-mobile { display: none; }
+}
+
+@media print {
+  .beian-bar { display: none; }
+}

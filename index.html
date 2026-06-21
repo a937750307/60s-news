@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>每日新闻 - 忆痕发布页</title>
+<link rel="stylesheet" href="css/style.css">
+<script src="js/vendor/vue.min.js"></script>
+<script src="js/vendor/jquery.min.js"></script>
+<script src="js/vendor/html2canvas.min.js"></script>
+</head>
+<body>
+<div id="newsapp" :class="'fs-' + fontSize">
+  <!-- 字体大小切换 -->
+  <div class="font-controls" v-if="newsdata.date">
+    <div class="tool-group">
+      <button :class="{active: fontSize==='small'}" @click="setFontSize('small')">A-</button>
+      <button :class="{active: fontSize==='medium'}" @click="setFontSize('medium')">A</button>
+      <button :class="{active: fontSize==='large'}" @click="setFontSize('large')">A+</button>
+    </div>
+  </div>
+
+  <!-- 截图核心区 -->
+  <div class="newscontainer" v-if="newsdata.date">
+    <!-- 头部 -->
+    <div class="header">
+      <h1 class="maintitle">每日新闻</h1>
+      <p class="tagline">每天一分钟，知天下事</p>
+    </div>
+
+    <!-- 日期栏 -->
+    <div class="datebar">
+      <div class="datebar-inner">
+        <div class="date-left">
+          <span class="date-gregorian">{{ newsdata.date_info.date.slice(5,7) }}月{{ newsdata.date_info.date.slice(8,11) }}日</span>
+          <span class="weekday-cn-inline">{{ weekArr[newsdata.date_info.weekDay % 7] }}</span>
+          <span class="date-year">{{ newsdata.date_info.date.slice(0,4) }}</span>
+        </div>
+        <div class="date-right">
+          <span class="date-lunar-label">农历</span>
+          <span class="date-lunar">{{ newsdata.date_info.lunarCalendar }}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 新闻列表 -->
+    <div class="newslist">
+      <p class="newstxt" v-for="(item, idx) in newsdata.news" :key="idx">{{ item }}</p>
+    </div>
+
+    <!-- 微语 -->
+    <div class="weiyu" v-if="newsdata.weiyu">
+      <p class="weiyu-text">{{ newsdata.weiyu }}</p>
+    </div>
+
+      <!-- 底部 -->
+      <div class="footer">
+        <a href="https://www.937788.xyz" target="_blank" class="footer-link">更多工具尽在忆痕发布页 www.937788.xyz</a>
+        <p class="disclaimer">本页新闻资讯来源于网络，仅供参考，不对其真实性、准确性和完整性作任何保证</p>
+      </div>
+  </div>
+
+  <!-- 保存按钮 -->
+  <div v-if="newsdata.date" class="imagebtn">
+    <button @click="toimage()">保存为图片</button>
+  </div>
+
+  <!-- 备案信息（不参与截图导出） -->
+  <div v-if="newsdata.date" class="beian-bar">
+    <div class="beian-pc">
+      <span class="beian-disclaimer">本站内容仅供学习和交流，非商业用途</span>
+      <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer" class="beian-icp">浙ICP备2025187466号</a>
+      <a href="https://www.beian.gov.cn/portal/registerSystemInfo?recordcode=33030402001483" target="_blank" rel="noopener noreferrer" class="beian-gongan">
+        <img src="https://www.937788.xyz/gonganbeian.png" alt="公安备案" onerror="this.style.display='none'">
+        浙公网安备33030402001483号
+      </a>
+    </div>
+    <div class="beian-mobile">
+      <span class="beian-disclaimer">本站内容仅供学习和交流，非商业用途</span>
+      <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer" class="beian-icp">浙ICP备2025187466号</a>
+      <a href="https://www.beian.gov.cn/portal/registerSystemInfo?recordcode=33030402001483" target="_blank" rel="noopener noreferrer" class="beian-gongan">
+        <img src="https://www.937788.xyz/gonganbeian.png" alt="公安备案" onerror="this.style.display='none'">
+        浙公网安备33030402001483号
+      </a>
+    </div>
+  </div>
+
+  <!-- 图片预览弹窗 -->
+  <div id="background" class="modal-overlay" v-if="showmodalbox">
+    <div class="modal-content">
+      <div class="modal-header">
+        <span class="modal-close" @click="showmodalbox=false">&times;</span>
+        <h2>长按保存图片</h2>
+      </div>
+      <div class="modal-body">
+        <img :src="imageurl" style="width:100%;height:auto;" alt="" />
+      </div>
+    </div>
+  </div>
+
+  <!-- 加载中 -->
+  <div v-if="!newsdata.date" class="loading">
+    <div class="loading-spinner"></div>
+    <p>加载中...</p>
+  </div>
+</div>
+
+<script src="js/app.js"></script>
+</body>
+</html>
