@@ -30,7 +30,7 @@ new Vue({
         var origShadow = dom.style.boxShadow;
         dom.style.borderRadius = '0';
         dom.style.boxShadow = 'none';
-        html2canvas(dom, { scale: window.devicePixelRatio, backgroundColor: '#ffffff' }).then(function(canvas) {
+        html2canvas(dom, { scale: window.devicePixelRatio, backgroundColor: '#ffffff', windowWidth: 1000 }).then(function(canvas) {
           // 恢复样式
           dom.style.borderRadius = origRadius;
           dom.style.boxShadow = origShadow;
